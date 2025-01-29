@@ -1,0 +1,208 @@
+Redis
+1.	Store and retrieve data in Redis using various data structures like strings, lists, and sets.
+2.	Implement basic Redis commands for data manipulation and retrieval
+
+Redis – Strings -----It should contain 1 word-------Inserted Data
+
+set company_name nextgenpixel
+
+get company_name
+
+setex brand_name 10 pixel
+
+get brand_name
+
+get brand_name
+
+keys *
+
+Redis – Strings -----It should contain 1 word-------Update Data
+
+append company_name website
+
+get company_name
+
+Redis – Strings -----It should contain 1 word-------Data Set the with expiration time
+
+set address mumbai EX 10
+
+get address
+
+Redis – Strings -----It should contain 1 word-------Shows the length
+
+strlen company_name
+
+keys *
+
+Redis – Strings -----It should contain 1 word-------Delete Data
+
+del company_name
+
+keys *
+
+Redis – LIST -----It should contain 1 word-------Inserted Data
+
+LPUSH compay_name nextgenpixel
+
+LPUSH compay_name adobe
+
+-----------Shows data from the specific-------------
+
+LRANGE company_name 0 10
+
+LPUSH brand_name manyavar centric xbox
+
+LRANGE brand_name 0 10
+
+LINDEX brand_name 2
+
+Redis – LIST -----It should contain 1 word-------Update Data
+
+RPUSH brand_name web_engage
+
+LRANGE brand_name 0 10
+
+Redis – List -----It should contain 1 word-------Shows the length
+
+LRANGE brand_name 0 10
+
+Redis – List -----It should contain 1 word-------Delete Data
+
+LPOP brand_name
+
+LRANGE brand_name 0 10
+
+RPOP brand_name
+
+LRANGE brand_name 0 10
+
+
+Redis – Set -----It should contain 1 word-------Inserted Data
+
+set company_name nextgenpixel
+
+get company_name
+
+setex brand_name 10 pixel
+
+get brand_name
+
+get brand_name
+
+keys *
+
+Redis – Set -----It should contain 1 word-------Update Data
+
+append company_name website
+
+get company_name
+
+Redis – Set -----It should contain 1 word-------Data Set the with expiration time
+
+set address mumbai EX 10
+
+get address
+
+Redis – Set -----It should contain 1 word-------Shows the length
+
+strlen company_name
+
+keys *
+
+Redis – Set -----It should contain 1 word-------Delete Data
+
+del company_name
+
+keys *
+
+----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+3.	Use Redis commands to manipulate and modify data stored in different data structures.
+4.	Retrieve specific data using Redis query operations.
+-----------------1.String -------------------------
+SET username "Jone"
+
+APPEND username "123"
+
+GET username
+
+DEL username
+--------------------2.List -------------------------------
+LPUSH mylist "apple"
+LPUSH mylist Mapple"
+LPUSH mylist "Capple"
+
+LINSERT mylist BEFORE "MAPPLE" "SAPPLE"
+
+LREM mylist 1 "apple"
+
+LSET mylist 0 "KIWI"
+
+LINDEX mylist 1
+LRANGE mylist
+--------------------3.SET------------------------------------
+SADD myset "a"
+SADD myset "b"
+SADD myset "c"
+
+SADD myset "a" "e" "d"
+
+SREM myset "c"
+
+SMEMBERS myset
+
+----------------4.HASHES----------------------------------------
+HSET user:1000 name "john"
+
+HSET user:1000 age "25"
+
+HGET user:1000 name
+HGETALL user:1000
+
+HDEL user:1000 name
+
+-----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+
+5.	Implement caching functionality using Redis as a cache store.
+6.	Store and retrieve data from Redis cache using appropriate commands.
+
+Step 1: Search for "Install Redis on Windows" on GitHub.
+Click on the first link.
+Step 2: Install Redis.
+Step 3: Run the following command to install the Redis Python client:
+pip install redis
+
+#code
+
+import redis
+client = redis.StrictRedis(
+ # host='localhost', # Redis server address
+ # port=6379, # Default Redis port
+ # db=0, # Redis database (default is 0)
+ decode_responses=True # Automatically decode responses to strings
+)
+try:
+ client.ping()
+ print("Connected to Redis")
+except redis.ConnectionError:
+ print("Could not connect to Redis")
+# Function to retrieve data
+def retrieve_data(key):
+ value = client.get(key)
+ if value:
+ print(f"Retrieved {key} with value {value}")
+ else:
+ print(f"{key} not found in cache")
+ return value
+# Function to store data
+def store_data(key, value):
+ client.set(key, value)
+ print(f"Stored {key} with value {value}")
+ key = "john"
+
+print(f'Requesting data for {key}...')
+store_data("smith", 8080)
+data = retrieve_data(key)
+print(f'Received: {data}\n')
